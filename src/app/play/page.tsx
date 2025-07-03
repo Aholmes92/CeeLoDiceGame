@@ -37,12 +37,16 @@ function DiceDisplay({ dice, rolling }: { dice: number[], rolling: boolean }) {
  );
 }
 
+interface Score {
+  result: string;
+  score: number
+}
 
 export default function CeeLoPage() {
  const [userDice, setUserDice] = useState([1, 1, 1]);
  const [computerDice, setComputerDice] = useState([1, 1, 1]);
- const [userScore, setUserScore] = useState<any>(null);
- const [computerScore, setComputerScore] = useState<any>(null);
+ const [userScore, setUserScore] = useState<Score | null>(null);
+ const [computerScore, setComputerScore] = useState<Score | null>(null);
  const [winner, setWinner] = useState('');
  const [rolling, setRolling] = useState(false);
  const [gameOver, setGameOver] = useState(false);

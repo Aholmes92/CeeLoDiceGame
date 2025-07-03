@@ -15,7 +15,7 @@ const getUserIdFromToken = (request: NextRequest) => {
     
     return decoded.id;
   
-  } catch (err) {
+  } catch (error) {
     throw new Error("Invalid or missing token");
   }
 };
