@@ -13,9 +13,14 @@ export default function PlayerProfile() {
             try {
                 const res= await axios.get('/api/users/me');
                 setUser(res.data);
-            } catch (error: any) {
-                console.error("Failed to get user:", error.message);
-                router.push('/login');
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    console.log("Failed to get user:", error.message);
+                    router.push('/login');
+                } else {
+                    console.log("Unknown error:", error);
+                    router.push('/login');
+                }
             }
         };
 

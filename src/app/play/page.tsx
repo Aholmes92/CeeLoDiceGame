@@ -117,8 +117,12 @@ const endSession = async () => {
     }
 
     router.push('/profile');
-  } catch (error: any) {
-    console.error("Error syncing stats:", error.message);
+  } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log("Unknown error:", error);
+      }
   }
 };
 

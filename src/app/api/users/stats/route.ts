@@ -7,8 +7,14 @@ import jwt from "jsonwebtoken";
 const getUserIdFromToken = (request: NextRequest) => {
   try {
     const token = request.cookies.get("token")?.value || '';
-    const decoded: any = jwt.verify(token, process.env.TOKEN_SECRET!);
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET!);
+    
+    if (typeof decoded !== 'object' || !decoded || !('email' in decoded)) {
+    throw new Error("Invalid token payload");
+    }
+    
     return decoded.id;
+  
   } catch (err) {
     throw new Error("Invalid or missing token");
   }
@@ -46,8 +52,11 @@ export async function POST(request: NextRequest) {
       gamesWon: updatedUser.gamesWon,
     });
 
-  } catch (err: any) {
-    console.error('Error syncing stats:', err);
-    return NextResponse.json({ message: err.message || 'Server error' }, { status: 500 });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error("Unknown error:", err);
+    }
   }
 }

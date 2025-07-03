@@ -7,10 +7,19 @@ import User from "@/models/userModel";
 const getDataFromToken = (request: NextRequest) => {
   try {
     const token = request.cookies.get("token")?.value || '';
-    const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET!);
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!);
+
+    if (typeof decodedToken !== 'object' || !decodedToken || !('email' in decodedToken)) {
+      throw new Error("Invalid token payload");
+    }
+
     return decodedToken.id;
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    } else {
+      console.error("Unknown error:", error);
+    }
   }
 };
 
@@ -30,8 +39,12 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(user, { status: 200 });
-  } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
-  }
+  } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error("Unknown error:", error);
+      }
+    }
 }
 

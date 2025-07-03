@@ -21,10 +21,14 @@ export default function LoginPage() {
             const response = await axios.post("api/users/login", user);
             console.log("Login Successful", response.data);
             router.push("/profile");
-        } catch (error: any) {
-            console.log("Login failed", error.message);
-            alert("Login failed. Please check your email and password and try again.");
-            setUser({ email: '', password: '' });
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                console.log("Login failed", error.message);
+                alert("Login failed. Please check your email and password and try again.");
+            } else {
+                console.log("Unknown error:", error);
+                alert("Login failed. Please check your email and password and try again.");
+             }
         } finally {
             setLoading(false)
         }
