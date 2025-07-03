@@ -10,9 +10,14 @@ export async function GET(request: NextRequest) {
        const userId =  await getDataFromToken(request);
        const user = await User.findById({_id: userId}).select("-password");
        return NextResponse.json({message: "Found user!", data: user})
-    } catch (error:any) {
-        return NextResponse.json({error: error.message}, 
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.log(error.message);
+          return NextResponse.json({error: error.message}, 
             {status: 400}
         );
-    }
+        } else {
+          console.log("Unknown error occurred:", error);
+        }
+    }       
 }

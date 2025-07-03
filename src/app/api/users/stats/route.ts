@@ -52,8 +52,8 @@ export async function POST(request: NextRequest) {
       gamesWon: updatedUser.gamesWon,
     });
 
-  } catch (err: unknown) {
-    if (err instanceof Error) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
       console.error(err.message);
     } else {
       console.error("Unknown error:", err);

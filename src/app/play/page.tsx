@@ -138,7 +138,7 @@ const endSession = async () => {
      <p className="p-6 font-bold text-blue-800 mb-6">Computer score: {computerScore?.result}</p>
 
 
-     {gameOver && <h2 className="font-bold my-4 text-blue-800 mb-6">{winner === 'Tie' ? "It's a tie!" : `${winner} wins!`}</h2>}
+     {gameOver && <h2 className="font-bold my-4 text-blue-800 mb-6">{winner === 'Tie' ? "Its a tie!" : `${winner} wins!`}</h2>}
 
 
      <div className="mt-4">

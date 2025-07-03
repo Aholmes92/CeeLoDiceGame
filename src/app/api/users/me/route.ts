@@ -4,7 +4,7 @@ import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 
 // Helper to get user ID from token
-const getDataFromToken = (request: NextRequest) => {
+export const getDataFromToken = (request: NextRequest) => {
   try {
     const token = request.cookies.get("token")?.value || '';
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!);
