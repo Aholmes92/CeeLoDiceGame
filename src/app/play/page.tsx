@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -149,11 +149,10 @@ const endSession = async () => {
        >
          {gameOver ? "Play Again" : "Roll Dice"}
        </button>
-       <a href='/profile'>
        <button
            className="m-2 px-4 py-2 rounded bg-white-500 hover:bg-red-700 hover:text-white font-bold mt-4 text-black"
            onClick= {endSession}>End Session
-       </button></a>
+       </button>
      </div>
    </div>
  );

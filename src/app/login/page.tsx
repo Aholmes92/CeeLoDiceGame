@@ -62,7 +62,7 @@ export default function LoginPage() {
                 onChange={(e) => setUser({...user, password: e.target.value})}
                 placeholder="password" />
             <button 
-                onClick={onLogin}
+                onClick={onLogin} disabled={buttonDisabled}
                 className="p-2 m-2 border rounded-lg">Login!</button>
                 <Link href="/signup">Sign up here.</Link>
         </div>

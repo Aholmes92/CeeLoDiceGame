@@ -11,12 +11,12 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 bg-gradient-to-br from-slate-100 to-slate-300 text-center">
-      <h1 className="text-5xl font-bold text-blue-800 mb-6">Let's Play Cee-Lo 🎲</h1>
+      <h1 className="text-5xl font-bold text-blue-800 mb-6">Lets Play Cee-Lo 🎲</h1>
       
       <p className="max-w-xl text-lg text-gray-700 mb-10">
         Cee-Lo is a fast-paced dice game where players roll three dice to beat the computer.
         <br /><br />
-        Roll a 4-5-6 to win instantly, 1-2-3 to lose. Triples are strong, and pairs give you a "point."
+        Roll a 4-5-6 to win instantly, 1-2-3 to lose. Triples are strong, and pairs give you a point.
         Highest score wins!
       </p>
 

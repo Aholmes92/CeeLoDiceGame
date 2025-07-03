@@ -54,9 +54,9 @@ export async function POST(request: NextRequest) {
 
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error(err.message);
+      console.error(error.message);
     } else {
-      console.error("Unknown error:", err);
+      console.error("Unknown error:", error);
     }
   }
 }

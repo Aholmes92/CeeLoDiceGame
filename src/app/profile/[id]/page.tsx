@@ -5,8 +5,16 @@ import { useRouter } from "next/navigation";
 
 
 export default function PlayerProfile() { 
+    interface User {
+        name: string;
+        email: string;
+        username: string;
+        gamesPlayed: number;
+        gamesWon: number;
+    };
+
     const router = useRouter();
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const fetchUser = async () => {
