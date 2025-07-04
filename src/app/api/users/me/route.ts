@@ -1,27 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import { getDataFromToken } from "@/helpers/getDatafromToken";
 import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 
-// Helper to get user ID from token
-export const getDataFromToken = (request: NextRequest) => {
-  try {
-    const token = request.cookies.get("token")?.value || '';
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!);
 
-    if (typeof decodedToken !== 'object' || !decodedToken || !('email' in decodedToken)) {
-      throw new Error("Invalid token payload");
-    }
-
-    return decodedToken.id;
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    } else {
-      console.error("Unknown error:", error);
-    }
-  }
-};
 
 export async function GET(request: NextRequest) {
   try {
