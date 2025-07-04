@@ -24,10 +24,10 @@ export default function PlayerProfile() {
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     console.log("Failed to get user:", error.message);
-                    router.push('/login');
+                    router.push('/profile');
                 } else {
                     console.log("Unknown error:", error);
-                    router.push('/login');
+                    router.push('/profile');
                 }
             }
         };
