@@ -20,7 +20,7 @@ export default function LoginPage() {
             setLoading(true);
             const response = await axios.post("api/users/login", user);
             console.log("Login Successful", response.data);
-            router.push("/profile");
+            router.push("/play");
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.log("Login failed", error.message);
@@ -66,5 +66,5 @@ export default function LoginPage() {
                 className="p-2 m-2 border rounded-lg">{buttonDisabled ? "Fill Out Form" : "Login!"}</button>
                 <Link href="/signup">Sign up here.</Link>
         </div>
-    )
+    )   
 }
