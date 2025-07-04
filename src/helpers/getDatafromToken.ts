@@ -7,10 +7,11 @@ connect();
 
 export const getDataFromToken = (request: NextRequest): string | undefined => {
   try {
-    const token = request.cookies.get("token")?.value || '';
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!);
+    const token = request.cookies.get("token")?.value;
+    if (!token) throw new Error("Missing token");
 
-    if (typeof decodedToken !== 'object' || !decodedToken || !('id' in decodedToken)) {
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!);
+    if (typeof decodedToken !== 'object' || !('id' in decodedToken)) {
       throw new Error("Invalid token payload");
     }
 
@@ -18,8 +19,6 @@ export const getDataFromToken = (request: NextRequest): string | undefined => {
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error(error.message);
-    } else {
-      console.error("Unknown error:", error);
     }
   }
 };

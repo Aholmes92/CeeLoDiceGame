@@ -19,7 +19,7 @@ export default function PlayerProfile() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res= await axios.get('/api/users/me');
+                const res= await axios.get('/api/users/me', { withCredentials: true });
                 setUser(res.data);
             } catch (error: unknown) {
                 if (error instanceof Error) {
